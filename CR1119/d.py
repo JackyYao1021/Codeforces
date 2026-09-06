@@ -3,47 +3,20 @@ def solve():
     n = int(input())
     arr = list(map(int, input().split()))
     
-    counter = Counter(arr)
-    keys = sorted(counter.keys())
-    cur = 0 
-    if counter[0] == 1:
+    
+    if arr.count(0) == 1: 
         print("NO")
         return
-    
-    for key in keys:
-        if cur == key:
-            if counter[key] >= 3:
-                cur += 1
-            else:
-                # when not enough
-                break
-        else:
-            break
     print("YES")
-    set_a = set()
-    set_b = set()
+    setA = False
     ans = ["C"] * n
-    for i, c in enumerate(arr):
-        if c < cur:
-            if c not in set_a:
-                set_a.add(c)
-                ans[i] = "A"
-            elif c not in set_b:
-                set_b.add(c)
-                ans[i] = "B"
-        elif c == cur:
-            if c not in set_a:
-                set_a.add(c)
-                ans[i] = "A"
-            elif c not in set_b:
-                set_b.add(c)
-                ans[i] = "B"
-        else:
-            ans[i] = "C"
+    for i in range(n):
+        if arr[i] == 0 and not setA:
+            ans[i] = "A"
+            setA = True
+        elif arr[i] == 0 and setA:
+            ans[i] = "B"
     print("".join(ans))
-            
-    
-
 
 
 
